@@ -1,0 +1,39 @@
+#%Module1.0
+#############################################################################
+## Date: 2020-10-09
+## Built using: intel/2020u1
+## Standard header for invoking autoloading functionality 
+##
+source /opt/rcic/include/rcic-module-head.tcl
+
+proc ModulesHelp { } {
+        puts stderr "\tModule: EPOCH version 4.17.12"
+	puts stderr "\1D, 2D, and 3D PIC Plasma Physics EPOCH code by CFSA Warwick."
+	puts stderr "\tCan use epoch1D, epoch2D, and epoch3D for 1, 2, and 3 dimensions."
+	puts stderr "\tMust execute code within directory containing input.deck."
+	puts stderr "\thttps://cfsa-pmw.warwick.ac.uk/EPOCH/epoch.git"
+}
+
+module-whatis "Category_______ PHYSICS"
+module-whatis "Name___________ epoch"
+module-whatis "Version________ 4.17.12"
+module-whatis "Description____ EPOCH 4.17.12.  1D, 2D, and 3D PIC Plasma Physics EPOCH code by CFSA Warwick."
+module-whatis "                Can use epoch1D, epoch2D, and epoch3D for 1, 2, and 3 dimensions."
+module-whatis "                Must execute code within directory containing input.deck."
+module-whatis "                https://cfsa-pmw.warwick.ac.uk/EPOCH/epoch.git"
+module-whatis "Prerequisites__ rcic-module-support,"
+module-whatis " 	       intel/2020u1"
+
+prepend-path	PATH	/dfs3/pub/huxtablg/apps/epoch/4.17.12/epoch1d/bin/
+prepend-path	PATH	/dfs3/pub/huxtablg/apps/epoch/4.17.12/epoch2d/bin/
+prepend-path	PATH	/dfs3/pub/huxtablg/apps/epoch/4.17.12/epoch3d/bin/
+#prepend-path	LD_LIBRARY_PATH /dfs/pub
+
+#############################################################################
+## Standard tail for invoking autoloading functionality
+##
+source /opt/rcic/include/rcic-module-tail.tcl
+
+if { [ module-info mode load ] } {
+  exec /bin/logger -p local6.notice -t module-hpc $env(USER) epoch/4.17.12
+}
